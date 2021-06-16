@@ -1,5 +1,6 @@
 package user.domain;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,5 +30,17 @@ public class Password {
 
     public static Password of(String password) {
         return new Password(password);
+    }
+
+    public void changePassword(String password) {
+        validRequired(password);
+        validSamePassword(password);
+        this.password = password;
+    }
+
+    private void validSamePassword(String password) {
+        if (this.password.equals(password)) {
+            throw new IllegalArgumentException("이전 비밀번호와 동일합니다.");
+        }
     }
 }

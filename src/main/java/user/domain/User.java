@@ -9,4 +9,8 @@ public class User {
         this.id = Id.of(id);
         this.password = Password.of(password);
     }
+
+    public void chagePassword(String password) {
+        this.password.changePassword(password);
+    }
 }

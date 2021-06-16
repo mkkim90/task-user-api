@@ -1,6 +1,7 @@
 package user.domain;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -49,6 +50,15 @@ public class UserTest {
     void validIdPolicyException(String id) {
         Assertions.assertThatThrownBy(() -> {
             Id.of(id);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+    
+    @DisplayName("비밀번호 변경 시, 이전 비밀번호와 동일한 경우 - 예외 발생")
+    @Test
+    void validChangePassword() {
+        User user = new User(testId, testPassword);
+        Assertions.assertThatThrownBy(() -> {
+            user.chagePassword(testPassword);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
