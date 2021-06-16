@@ -52,7 +52,7 @@ public class UserTest {
             Id.of(id);
         }).isInstanceOf(IllegalArgumentException.class);
     }
-    
+
     @DisplayName("비밀번호 변경 시, 이전 비밀번호와 동일한 경우 - 예외 발생")
     @Test
     void validChangePassword() {

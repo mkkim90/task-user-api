@@ -1,9 +1,13 @@
 package user.domain;
 
+import javax.persistence.Embeddable;
+import java.io.Serializable;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Id {
+@Embeddable
+public class Id implements Serializable {
     private String id;
 
     private Id(String id) {
@@ -29,5 +33,18 @@ public class Id {
 
     public static Id of(String id) {
         return new Id(id);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Id id1 = (Id) o;
+        return Objects.equals(id, id1.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

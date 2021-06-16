@@ -1,8 +1,17 @@
 package user.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 
-public class User {
+@Entity
+public class User extends BaseTimeEntity{
+
+    @EmbeddedId
     private Id id;
+
+    @Embedded
     private Password password;
 
     public User(String id, String password) {

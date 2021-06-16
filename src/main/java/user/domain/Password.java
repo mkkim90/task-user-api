@@ -1,10 +1,15 @@
 package user.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Embeddable
 public class Password {
+
+    @Column(nullable = false)
     private String password;
 
     private Password(String password) {
@@ -42,5 +47,18 @@ public class Password {
         if (this.password.equals(password)) {
             throw new IllegalArgumentException("이전 비밀번호와 동일합니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Password password1 = (Password) o;
+        return Objects.equals(password, password1.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(password);
     }
 }
