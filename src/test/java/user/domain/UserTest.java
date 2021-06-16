@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class UserTest {
     private final String testId = "test1";
     private final String testPassword = "test0156!";
-    
+
     @Test
     void create() {
         User user = new User(testId, testPassword);
@@ -41,6 +41,14 @@ public class UserTest {
     void validPasswordPolicyException(String password) {
         Assertions.assertThatThrownBy(() -> {
             Password.of(password);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"mk12!", "mkkim0424137289789", "test" ,"!@#$)(*&^%$##", "1234"})
+    void validIdPolicyException(String id) {
+        Assertions.assertThatThrownBy(() -> {
+            Id.of(id);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
