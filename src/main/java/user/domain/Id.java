@@ -10,6 +10,9 @@ import java.util.regex.Pattern;
 public class Id implements Serializable {
     private String id;
 
+    protected  Id() {
+    }
+
     private Id(String id) {
         validRequired(id);
         validIdPolicy(id);

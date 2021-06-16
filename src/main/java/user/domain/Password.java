@@ -12,6 +12,9 @@ public class Password {
     @Column(nullable = false)
     private String password;
 
+    protected Password() {
+    }
+
     private Password(String password) {
         validRequired(password);
         validPasswordPolicy(password);
