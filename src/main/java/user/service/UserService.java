@@ -43,9 +43,13 @@ public class UserService {
     }
 
     private void validateExistId(UserRequest request) {
-        if (userRepository.existsById(Id.of(request.getId()))) {
-            throw new IllegalArgumentException("이미 존재하는 아이디입니다.");
+        if (isExistsById(request.getId())) {
+            throw new IllegalArgumentException("이미 존재하는 ID 입니다.");
         }
+    }
+
+    private boolean isExistsById(String id) {
+        return userRepository.existsById(Id.of(id));
     }
 
     public void update(String id, UserRequest userRequest) {
@@ -60,6 +64,13 @@ public class UserService {
     }
 
     public void deleteUser(String id) {
+        validateExistDeleteUser(id);
         userRepository.deleteById(Id.of(id));
+    }
+
+    private void validateExistDeleteUser(String id) {
+        if (isExistsById(id)) {
+            throw new IllegalArgumentException("존재하지 않는 회원입니다.");
+        }
     }
 }

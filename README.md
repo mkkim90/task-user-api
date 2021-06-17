@@ -18,5 +18,8 @@ Java1.8, SpringBoot, JPA, H2, Swagger, gradle
     - 이미 등록된 password와 동일할 경우 "이전 비밀번호와 동일합니다."
     
 - 회원 삭제 기능을 구현해주세요.
-    - 없는 ID인 경우 "존재하지 않는 회원입니다."
-    
+    - 없는 ID인 경우 "존재하지 않는 회원입니다.
+  
+## Swagger
+웹 브라우저를 통해 확인 가능
+http://localhost:8080/swagger-ui/ 
