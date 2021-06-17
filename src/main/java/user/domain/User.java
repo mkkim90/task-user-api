@@ -39,4 +39,22 @@ public class User extends BaseTimeEntity{
     public int hashCode() {
         return Objects.hash(id, password);
     }
+
+    public Id getId() {
+        return this.id;
+    }
+
+    public String getIdForUserResponse() {
+        return this.id.getId();
+    }
+
+    public Password getPassword() {
+        return this.password;
+    }
+
+    public String getPasswordForUserResponse() {
+        return this.password.getPassword();
+    }
+
+
 }
