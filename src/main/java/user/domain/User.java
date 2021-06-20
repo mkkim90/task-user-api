@@ -1,12 +1,16 @@
 package user.domain;
 
-import javax.persistence.Column;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.util.Objects;
 
 @Entity
+@Getter
+@EqualsAndHashCode
 public class User extends BaseTimeEntity{
 
     @EmbeddedId
@@ -27,29 +31,8 @@ public class User extends BaseTimeEntity{
         this.password.changePassword(password);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(password, user.password);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, password);
-    }
-
-    public Id getId() {
-        return this.id;
-    }
-
     public String getIdForUserResponse() {
         return this.id.getId();
-    }
-
-    public Password getPassword() {
-        return this.password;
     }
 
     public String getPasswordForUserResponse() {
