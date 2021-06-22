@@ -31,8 +31,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public UserResponse findById(String id) {
-        User user = userRepository.findById(Id.of(id))
-                .orElseThrow(EntityNotFoundException::new);
+        User user = findUserById(id);
         return UserResponse.of(user);
     }
 
@@ -53,14 +52,13 @@ public class UserService {
     }
 
     public void update(String id, UserRequest userRequest) {
-        User user =  userRepository.findById(Id.of(id))
-                .orElseThrow(EntityNotFoundException::new);
+        User user = findUserById(id);
         user.chagePassword(userRequest.getPassword());
     }
 
     public User findUserById(String id) {
         return userRepository.findById(Id.of(id))
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     public void deleteUser(String id) {
