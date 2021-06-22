@@ -5,26 +5,26 @@ import lombok.Getter;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Embeddable
 @Getter
 @EqualsAndHashCode
+@Embeddable
 public class Id implements Serializable {
+
     private String id;
 
     protected  Id() {
     }
 
     private Id(String id) {
-        validRequired(id);
+        checkNotNull(id);
         validIdPolicy(id);
         this.id = id;
     }
 
-    private void validRequired(String id) {
+    private void checkNotNull(String id) {
         if (id == null || id.isEmpty()) {
             throw new IllegalArgumentException("ID는 필수 값입니다.");
         }

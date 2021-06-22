@@ -5,13 +5,12 @@ import lombok.Getter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Embeddable
 @Getter
 @EqualsAndHashCode
+@Embeddable
 public class Password {
 
     @Column(nullable = false)
@@ -21,12 +20,12 @@ public class Password {
     }
 
     private Password(String password) {
-        validRequired(password);
+        checkNotNull(password);
         validPasswordPolicy(password);
         this.password = password;
     }
 
-    private void validRequired(String password) {
+    private void checkNotNull(String password) {
         if (password == null || password.isEmpty()) {
             throw new IllegalArgumentException("패스워드는 필수 값입니다.");
         }
@@ -46,7 +45,7 @@ public class Password {
     }
 
     public void changePassword(String password) {
-        validRequired(password);
+        checkNotNull(password);
         validSamePassword(password);
         this.password = password;
     }

@@ -8,9 +8,9 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.util.Objects;
 
-@Entity
 @Getter
 @EqualsAndHashCode
+@Entity
 public class User extends BaseTimeEntity{
 
     @EmbeddedId
